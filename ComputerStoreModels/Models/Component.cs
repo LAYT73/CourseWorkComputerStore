@@ -10,6 +10,6 @@ public class Component : IUserOwnedEntity
     public ICollection<AssemblyComponent> AssemblyComponents { get; set; } = [];
     public ICollection<ProductComponent> ProductComponents { get; set; } = [];
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

@@ -1,0 +1,34 @@
+﻿@model List<ComputerStoreModels.Reports.ComponentDetailReport>
+
+@if (Model != null)
+{
+    <h2 class="mb-4">PDF Отчет (данные)</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Комплектующее</th>
+                    <th>Дата отчета</th>
+                    <th>Покупки</th>
+                    <th>Заказы</th>
+                    <th>Детали</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ComponentName</td>
+                        <td>@item.ReportDate.ToString("dd.MM.yyyy")</td>
+                        <td>@item.PurchaseDescription</td>
+                        <td>@item.OrderDescription</td>
+                        <td>@item.Details</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <a href="@Url.Action("PdfReport")" class="btn btn-secondary mt-3">Назад</a>
+}

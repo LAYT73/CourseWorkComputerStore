@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerStoreModels", "Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerStoreDatabase", "ComputerStoreDatabase\ComputerStoreDatabase.csproj", "{470DD4B7-9B92-410A-881B-AF1E7A0D7843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerStoreServices", "ComputerStoreServices\ComputerStoreServices.csproj", "{1005BD60-E431-47C0-B830-488907452C57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerStoreWebStorekeeper", "ComputerStoreWebStorekeeper\ComputerStoreWebStorekeeper.csproj", "{9C023077-1681-433B-9163-B91B04F69849}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{470DD4B7-9B92-410A-881B-AF1E7A0D7843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470DD4B7-9B92-410A-881B-AF1E7A0D7843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{470DD4B7-9B92-410A-881B-AF1E7A0D7843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1005BD60-E431-47C0-B830-488907452C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1005BD60-E431-47C0-B830-488907452C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1005BD60-E431-47C0-B830-488907452C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1005BD60-E431-47C0-B830-488907452C57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C023077-1681-433B-9163-B91B04F69849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C023077-1681-433B-9163-B91B04F69849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C023077-1681-433B-9163-B91B04F69849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C023077-1681-433B-9163-B91B04F69849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

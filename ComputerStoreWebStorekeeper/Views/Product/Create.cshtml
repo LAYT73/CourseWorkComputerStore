@@ -1,0 +1,41 @@
+﻿@model ComputerStoreModels.Models.Product
+
+@using ComputerStoreModels.Models
+@using ComputerStoreModels.Enums
+
+@{
+    ViewData["Title"] = "Создать товар";
+    var components = ViewBag.Components as List<Component>;
+}
+
+<h2>Создать новый товар</h2>
+
+<form method="post" asp-action="Create">
+    <div class="form-group mb-3">
+        <label>Название товара</label>
+        <input type="text" name="Name" class="form-control" required placeholder="Например: Игровой ПК" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Описание</label>
+        <input type="text" name="Description" class="form-control" placeholder="Краткое описание товара" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Цена</label>
+        <input type="number" name="Price" class="form-control" step="0.01" min="0" required placeholder="Например: 99999.99" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Выберите компоненты:</label>
+        <select name="componentIds" class="form-control" multiple required>
+            @foreach (var component in components)
+            {
+                <option value="@component.Id">@component.Name</option>
+            }
+        </select>
+        <small class="form-text text-muted">Удерживайте Ctrl (или Cmd) для выбора нескольких компонентов</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

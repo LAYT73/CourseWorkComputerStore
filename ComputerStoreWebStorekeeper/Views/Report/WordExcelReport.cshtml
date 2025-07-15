@@ -1,0 +1,36 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Word / Excel Отчет";
+    var products = ViewBag.Products as IEnumerable<ComputerStoreModels.Models.Product>;
+}
+
+<h2 class="mb-4">Сгенерировать Word/Excel отчет</h2>
+
+<form method="post" class="mb-5">
+    <div class="mb-3">
+        <label for="productIds" class="form-label">Выберите продукты:</label>
+        @if (products != null && products.Any())
+        {
+            <select name="productIds" id="productIds" class="form-select" multiple size="5" required>
+                @foreach (var p in products)
+                {
+                    <option value="@p.Id">@p.Name</option>
+                }
+            </select>
+        }
+        else
+        {
+            <div class="form-text text-danger">Создайте продукты для генерации отчета</div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label for="format" class="form-label">Выберите формат:</label>
+        <select name="format" id="format" class="form-select" required>
+            <option value="docx">Word (.docx)</option>
+            <option value="xlsx">Excel (.xlsx)</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Скачать отчет</button>
+</form>

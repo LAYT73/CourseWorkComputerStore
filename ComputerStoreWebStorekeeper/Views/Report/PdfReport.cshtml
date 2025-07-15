@@ -1,0 +1,51 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "PDF Отчет";
+    var components = ViewBag.Components as IEnumerable<ComputerStoreModels.Models.Component>;
+}
+
+<h2 class="mb-4">Сгенерировать PDF отчет</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+<form method="post" class="mb-5">
+    <div class="mb-3">
+        <label for="componentIds" class="form-label">Выберите комплектующие:</label>
+        @if (components != null && components.Any())
+        {
+            <select name="componentIds" id="componentIds" class="form-select" multiple size="5" required>
+                @foreach (var c in components)
+                {
+                    <option value="@c.Id">@c.Name</option>
+                }
+            </select>
+        }
+        else
+        {
+            <div class="form-text text-danger">Создайте комплектующие для генерации отчета</div>
+        }
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="startDate" class="form-label">Период с:</label>
+            <input type="date" id="startDate" name="startDate" class="form-control" required />
+        </div>
+        <div class="col-md-6">
+            <label for="endDate" class="form-label">по:</label>
+            <input type="date" id="endDate" name="endDate" class="form-control" required />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Почта для отправки (если указана — отчет отправится на email, иначе — отобразится таблица):</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="example@mail.com" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сформировать отчет</button>
+</form>

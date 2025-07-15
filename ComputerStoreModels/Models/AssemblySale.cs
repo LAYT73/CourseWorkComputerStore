@@ -5,8 +5,8 @@ public class AssemblySale
     public Guid Id { get; set; }
 
     public Guid AssemblyId { get; set; }
-    public required Assembly Assembly { get; set; }
+    public Assembly? Assembly { get; set; }
 
     public Guid SaleId { get; set; }
-    public required Sale Sale { get; set; }
+    public Sale? Sale { get; set; }
 }

@@ -10,6 +10,6 @@ public class Comment : IUserOwnedEntity
     public Assembly? Assembly { get; set; }
     public Guid? AssemblyId { get; set; }
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

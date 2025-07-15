@@ -1,6 +1,7 @@
 ﻿using ComputerStoreContracts.Repositories;
 using ComputerStoreModels.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ComputerStoreDatabase.Implementations;
 
@@ -13,16 +14,6 @@ public class Repository<T> : IRepository<T> where T : class, IUserOwnedEntity
     {
         _context = context;
         _dbSet = context.Set<T>();
-    }
-
-    public async Task AddAsync(T entity)
-    {
-        await _dbSet.AddAsync(entity);
-    }
-
-    public void DeleteAsync(T entity)
-    {
-        _dbSet.Remove(entity);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
@@ -40,13 +31,30 @@ public class Repository<T> : IRepository<T> where T : class, IUserOwnedEntity
         return await _dbSet.FindAsync(id);
     }
 
+    public async Task AddAsync(T entity)
+    {
+        await _dbSet.AddAsync(entity);
+        await SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(T entity)
+    {
+        _dbSet.Update(entity);
+        await SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var entity = await GetByIdAsync(id);
+        if (entity != null)
+        {
+            _dbSet.Remove(entity);
+            await SaveChangesAsync();
+        }
+    }
+
     public async Task<bool> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync() > 0; 
-    }
-
-    public void UpdateAsync(T entity)
-    {
-        _dbSet.Update(entity);
     }
 }

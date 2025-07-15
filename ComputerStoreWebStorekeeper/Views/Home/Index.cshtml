@@ -1,0 +1,20 @@
+﻿<h2>Добро пожаловать, @GetUserName()!</h2>
+<p>Вы вошли как кладовщик</p>
+
+<div class="list-group">
+    <a asp-controller="Component" asp-action="Index" class="list-group-item list-group-item-action">Комплектующие</a>
+    <a asp-controller="Product" asp-action="Index" class="list-group-item list-group-item-action">Товары</a>
+    <a asp-controller="Order" asp-action="Index" class="list-group-item list-group-item-action">Заказы</a>
+    <a asp-controller="Report" asp-action="WordExcelReport" class="list-group-item list-group-item-action">Список сборок по товарам</a>
+    <a asp-controller="Report" asp-action="PdfReport" class="list-group-item list-group-item-action">Отчет по комплектующим</a>
+</div>
+
+@functions {
+    string GetUserName()
+    {
+        var userJson = Context.Session.GetString("User");
+        if (string.IsNullOrEmpty(userJson)) return "Пользователь";
+        var user = System.Text.Json.JsonSerializer.Deserialize<ComputerStoreModels.Models.User>(userJson);
+        return user?.FullName ?? "Пользователь";
+    }
+}

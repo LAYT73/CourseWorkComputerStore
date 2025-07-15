@@ -1,0 +1,44 @@
+﻿@using ComputerStoreModels.Models
+@model ComputerStoreModels.Models.Product
+
+@{
+    ViewData["Title"] = "Редактировать товар";
+    var components = ViewBag.Components as List<Component>;
+    var selectedIds = Model.ProductComponents.Select(pc => pc.ComponentId).ToHashSet();
+}
+
+<h2>Редактировать товар</h2>
+
+<form method="post" asp-action="Update">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="form-group mb-3">
+        <label>Название товара</label>
+        <input type="text" name="Name" class="form-control" value="@Model.Name" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Описание</label>
+        <input type="text" name="Description" class="form-control" value="@Model.Description" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Цена</label>
+        <input type="number" name="Price" step="0.01" class="form-control" value="@Model.Price" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Выберите компоненты:</label>
+        <select name="componentIds" class="form-control" multiple required>
+            @foreach (var component in components)
+            {
+                <option value="@component.Id" selected="@(selectedIds.Contains(component.Id) ? "selected" : null)">
+                    @component.Name
+                </option>
+            }
+        </select>
+        <small class="form-text text-muted">Удерживайте Ctrl (или Cmd) для выбора нескольких компонентов</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Обновить</button>
+</form>

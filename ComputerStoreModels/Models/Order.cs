@@ -11,6 +11,6 @@ public class Order : IUserOwnedEntity
 
     public ICollection<OrderProduct> OrderProducts { get; set; } = [];
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

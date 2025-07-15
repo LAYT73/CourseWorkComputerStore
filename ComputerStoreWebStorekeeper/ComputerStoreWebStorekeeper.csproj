@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ComputerStoreContracts\ComputerStoreContracts.csproj" />
+    <ProjectReference Include="..\ComputerStoreDatabase\ComputerStoreDatabase.csproj" />
+    <ProjectReference Include="..\ComputerStoreModels\ComputerStoreModels.csproj" />
+    <ProjectReference Include="..\ComputerStoreServices\ComputerStoreServices.csproj" />
+  </ItemGroup>
+
+</Project>

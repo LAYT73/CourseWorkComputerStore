@@ -10,6 +10,6 @@ public class Sale : IUserOwnedEntity
     public ICollection<AssemblySale> AssemblySales { get; set; } = [];
     public ICollection<SaleProduct> SaleProducts { get; set; } = [];
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

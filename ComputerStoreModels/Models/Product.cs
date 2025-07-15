@@ -12,6 +12,6 @@ public class Product : IUserOwnedEntity
     public ICollection<ProductComponent> ProductComponents { get; set; } = [];
     public ICollection<OrderProduct> OrderProducts { get; set; } = [];
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

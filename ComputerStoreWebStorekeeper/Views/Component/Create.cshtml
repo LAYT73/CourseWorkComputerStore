@@ -1,0 +1,46 @@
+﻿@model ComputerStoreModels.Models.Component
+
+@{
+    ViewData["Title"] = "Создать новое комплектующее";
+    var assemblies = ViewBag.Assemblies as List<ComputerStoreModels.Models.Assembly>;
+}
+
+<h2>Создать новое комплектующее</h2>
+
+<form method="post" asp-action="Create">
+    <div class="form-group mb-3">
+        <label>Название</label>
+        <input name="name" class="form-control" placeholder="Например: Видеокарта" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Описание</label>
+        <textarea name="description" class="form-control" placeholder="Описание комплектующего"></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Цена</label>
+        <input name="price" type="number" step="0.01" class="form-control" placeholder="Введите цену" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Выберите сборки:</label>
+
+        @if (assemblies != null && assemblies.Any())
+        {
+            <select name="assemblyIds" class="form-control" multiple>
+                @foreach (var assembly in assemblies)
+                {
+                    <option value="@assembly.Id">@assembly.Name</option>
+                }
+            </select>
+            <small class="form-text text-muted">Для выбора нескольких сборок удерживайте Ctrl (или Cmd на Mac)</small>
+        }
+        else
+        {
+            <p class="text-warning">Сборки отсутствуют. Пожалуйста, создайте сборки перед добавлением комплектующего.</p>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

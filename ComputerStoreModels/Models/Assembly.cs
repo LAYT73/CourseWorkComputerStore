@@ -11,6 +11,6 @@ public class Assembly : IUserOwnedEntity
     public ICollection<AssemblySale> AssemblySales { get; set; } = [];
     public ICollection<AssemblyComponent> AssemblyComponents { get; set; } = [];
 
-    public required User User { get; set; }
+    public User? User { get; set; }
     public Guid UserId { get; set; }
 }

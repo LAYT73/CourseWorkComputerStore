@@ -1,0 +1,45 @@
+﻿@using ComputerStoreModels.Models
+@model ComputerStoreModels.Models.Order
+
+@{
+    ViewData["Title"] = "Редактировать заказ";
+    var products = ViewBag.Products as List<Product>;
+    var selectedIds = Model.OrderProducts.Select(op => op.ProductId).ToHashSet();
+}
+
+<h2>Редактировать заказ</h2>
+
+<form method="post" asp-action="Update">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="form-group mb-3">
+        <label>Название заказа</label>
+        <input type="text" name="name" class="form-control" value="@Model.Name" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Выберите товары:</label>
+        <select name="productIds" class="form-control" multiple required>
+            @foreach (var product in products)
+            {
+                <option value="@product.Id" selected="@(selectedIds.Contains(product.Id) ? "selected" : null)">
+                    @product.Name
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Статус заказа</label>
+        <select name="status" class="form-control" required>
+            @foreach (var status in Enum.GetValues(typeof(ComputerStoreModels.Enums.OrderType)))
+            {
+                <option value="@status" selected="@(status.ToString() == Model.Status.ToString() ? "selected" : null)">
+                    @status
+                </option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Обновить</button>
+</form>

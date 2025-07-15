@@ -1,0 +1,52 @@
+﻿@model ComputerStoreModels.Models.Component
+
+@{
+    ViewData["Title"] = "Редактировать комплектующее";
+    var assemblies = ViewBag.Assemblies as List<ComputerStoreModels.Models.Assembly>;
+    var selectedIds = Model.AssemblyComponents.Select(ac => ac.AssemblyId).ToHashSet();
+}
+
+<h2>Редактировать комплектующее</h2>
+
+<form method="post" asp-action="Update">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label>Название</label>
+        <input name="name" class="form-control" value="@Model.Name" />
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Описание</label>
+        <textarea name="description" class="form-control">@Model.Description</textarea>
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Цена</label>
+        <input name="price" type="number" step="0.01" class="form-control" value="@Model.Price" />
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Выберите сборки</label>
+
+        @if (assemblies != null && assemblies.Any())
+        {
+            <select name="assemblyIds" class="form-control" multiple>
+                @foreach (var assembly in assemblies)
+                {
+                    <option value="@assembly.Id" selected="@(selectedIds.Contains(assembly.Id) ? "selected" : null)">
+                        @assembly.Name
+                    </option>
+                }
+            </select>
+            <small class="form-text text-muted">Для выбора нескольких сборок удерживайте Ctrl (Cmd на Mac)</small>
+        }
+        else
+        {
+            <p class="text-warning">Сборки отсутствуют. Пожалуйста, создайте сборки перед редактированием комплектующего.</p>
+        }
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Обновить</button>
+</form>
